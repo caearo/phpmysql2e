@@ -1,4 +1,4 @@
-<?php # Script 7.7 - register.php (3rd version after Script 7.3 & 7.5)
+<?php # Script 7.5 - register.php (2nd version after Script 7.3)
 
 $page_title = 'Register';
 include ('./includes/header.html');
@@ -55,34 +55,24 @@ if (isset($_POST['submitted'])) {
 
 		// Register the user in the database.
 
-		// Check for previous registration.
-		$query = "SELECT user_id FROM users WHERE email = '$e'";
-		$result = @mysql_query($query); 
-		if (mysql_num_rows($result) == 0) {
+		// Make the query.
+		$query = "INSERT INTO users (first_name, last_name, email, password, registration_date) VALUES ( '$fn', '$ln', '$e', SHA('$p'), NOW() )";
+		$result = @mysql_query($query); // Run the query.
+		if ($result) { // If it ran OK.
 
-			// Make the query.
-			$query = "INSERT INTO users (first_name, last_name, email, password, registration_date) VALUES ( '$fn', '$ln', '$e', SHA('$p'), NOW() )";
-			$result = @mysql_query($query); // Run the query.
-			if ($result) { // If it ran OK.
+			// Send an email, if desired.
 
-				// Send an email, if desired.
-
-				// Print a message.
-				echo '<h1 id="mainhead">Thank you!</h1>
-				<p>You are now registered. In Chapter 9 you will actually be able to log in.</p>
-				<p><br /></p>';
-			} else { // If it did not run OK.
-				echo '<h1 id="mainhead">System Error!</h1>
-					<p class="error">You could not be registered due to a system error. We apologize for any
-					inconvenience.</p>'; // Public message.
-				echo '<p>' . mysql_error() . '<br /><br />Query:' . $query . '</p>'; // Debug message.
-				include ( './includes/footer.html');
-				exit();
-			}
-
-		} else { //Already registered.
-		echo '<h1 id="mainhead">Error!</h1>
-		<p class="error">The email address has already been registered.</p>';
+			// Print a message.
+			echo '<h1 id="mainhead">Thank you!</h1>
+			<p>You are now registered. In Chapter 9 you will actually be able to log in.</p>
+			<p><br /></p>';
+		} else { // If it did not run OK.
+			echo '<h1 id="mainhead">System Error!</h1>
+				<p class="error">You could not be registered due to a system error. We apologize for any
+				inconvenience.</p>'; // Public message.
+			echo '<p>' . mysql_error() . '<br /><br />Query:' . $query . '</p>'; // Debug message.
+			include ( './includes/footer.html');
+			exit();
 		}
 
 	} else {
@@ -107,7 +97,7 @@ if (isset($_POST['submitted'])) {
 	<p>Password: <input type="password" name="password1" size="10" maxlength="20" /></p>
 	<p>Confirm Password: <input type="password" name="password2" size="10" maxlength="20" /></p>
 	<p><input type="submit" name="submit" value="Register" /></p>
-	<input type="hedden" name="submitted" value="TRUE" />
+	<input type="hidden" name="submitted" value="TRUE" />
 </form>
 <?php
 include ('./includes/footer.html');

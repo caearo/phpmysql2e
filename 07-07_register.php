@@ -107,7 +107,7 @@ if (isset($_POST['submitted'])) {
 	<p>Password: <input type="password" name="password1" size="10" maxlength="20" /></p>
 	<p>Confirm Password: <input type="password" name="password2" size="10" maxlength="20" /></p>
 	<p><input type="submit" name="submit" value="Register" /></p>
-	<input type="hedden" name="submitted" value="TRUE" />
+	<input type="hidden" name="submitted" value="TRUE" />
 </form>
 <?php
 include ('./includes/footer.html');

@@ -1,7 +1,7 @@
 <?php # Script 7.4 - view_users.php
 // This script retrieves all the records from the users table.
 
-$page_tile = 'View the Current Users';
+$page_title = 'View the Current Users';
 include('./includes/header.html');
 
 // Page header.
