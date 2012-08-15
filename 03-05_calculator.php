@@ -1,4 +1,4 @@
-<?php # Script 3.6 - calculator.php (2nd version after Script 3.5)
+<?php # Script 3.5 - calculator.php
 $page_title = 'Widget Cost calculator';
 include('./includes/header.html');
 
@@ -29,12 +29,9 @@ if (isset($_POST['submitted'])) {
 
 <h2>Widget Cost Calculator</h2>
 <form action="calculator.php" method="post">
-	<p>Quantity: <input type="text" name="quantity" size="5" maxlength="10" 
-		value="<?php if( isset($_POST['quantity']) ) echo $_POST['quantity']; ?>"/></p>
-	<p>Price: <input type="text" name="price" size="5" maxlength="10" 
-		value="<?php if( isset($_POST['price']) ) echo $_POST['price']; ?>"/></p>
-	<p>Tax (%): <input type="text" name="tax" size="5" maxlength="10" 
-		value="<?php if( isset($_POST['tax']) ) echo $_POST['tax']; ?>"/></p>
+	<p>Quantity: <input type="text" name="quantity" size="5" maxlength="10" /></p>
+	<p>Price: <input type="text" name="price" size="5" maxlength="10" /></p>
+	<p>Tax (%): <input type="text" name="tax" size="5" maxlength="10" /></p>
 	<p><input type="submit" name="submit" value="Calculate!" /></p>
 	<input type="hidden" name="submitted" value="TRUE">
 </form>
